@@ -11,9 +11,8 @@
         "}"
     ],
     "post_install": [
-        "Set-Content -Path \"$dir\\LaunchMonitor.cmd\" -Value \"@echo off`r`necho Refreshing Claude Code authentication...`r`ncall \\\"%APPDATA%\\npm\\claude.cmd\\\" update >nul 2>&1`r`necho Starting Usage Monitor...`r`nstart `\"\\\" \\\"%~dp0UsageMonitorForClaude.exe\\\"\" -Encoding ASCII",
-        "$regPath = 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run'",
-        "New-ItemProperty -Path $regPath -Name 'UsageMonitorForClaude' -Value \"\\\"$dir\\UsageMonitorForClaude.exe\\\"\" -PropertyType String -Force | Out-Null",
+        "@('@echo off', 'echo Refreshing Claude Code authentication...', 'call \"%APPDATA%\\npm\\claude.cmd\" update >nul 2>&1', 'echo Starting Usage Monitor...', 'start \"\" \"%~dp0UsageMonitorForClaude.exe\"') | Set-Content -Path \"$dir\\LaunchMonitor.cmd\" -Encoding ASCII",
+        "New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run' -Name 'UsageMonitorForClaude' -Value \"$dir\\UsageMonitorForClaude.exe\" -PropertyType String -Force | Out-Null",
         "Write-Host 'Autostart registered.'"
     ],
     "pre_uninstall": [
