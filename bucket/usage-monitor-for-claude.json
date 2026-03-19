@@ -20,8 +20,7 @@
         "Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run' -Name 'UsageMonitorForClaude' -ErrorAction SilentlyContinue"
     ],
     "bin": [
-        ["UsageMonitorForClaude.exe", "usage-monitor-for-claude"],
-        "LaunchMonitor.cmd"
+        ["UsageMonitorForClaude.exe", "usage-monitor-for-claude"]
     ],
     "shortcuts": [
         ["UsageMonitorForClaude.exe", "Usage Monitor for Claude"]
